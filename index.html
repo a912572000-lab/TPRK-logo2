@@ -10,7 +10,7 @@
     <meta name="keywords" content="黃克豪, 翁子恆, 近視雷射, 三總眼科, 松山分院眼科, SMART TransPRK, AMARIS 1050RS, 角膜零接觸, 飛行員近視雷射, Express">
     <meta name="author" content="睛隼視界">
     
-    <!-- Open Graph (OG) 社群分享協定 -->
+    <!-- Open Graph (OG) 社群分享協定，優化 LINE/Facebook 預覽圖卡 -->
     <meta property="og:title" content="睛隼視界 - 松院-三總眼科Express雷射預約平台 (松山分院/內湖總院)">
     <meta property="og:description" content="徹底告別眼鏡束縛！三總眼科團隊官方綠色通道，提供「角膜零接觸、不掀瓣」的極致安全近視雷射，省去漫長排隊，由權威主治醫師全程把關。">
     <meta property="og:type" content="website">
@@ -24,8 +24,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Alpine.js (含用於滑動風琴式 FAQ 的 Collapse 插件) -->
-    <script src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
     <!-- FontAwesome 圖示庫 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -160,7 +160,7 @@
                     </div>
                 </div>
 
-                <!-- 服務選單 - 桌面端 -->
+                <!-- 服務選單 - 桌面端 (改為 lg:flex，1024px 以下自動隱藏，保護 iPad 直向) -->
                 <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8">
                     <a href="#why-us" class="text-slate-600 hover:text-brand-600 text-base font-extrabold transition-colors duration-200"><i class="fa-solid fa-shield-heart mr-1 text-brand-500"></i> 為何選擇我們</a>
                     <a href="#clinical-proof" class="text-slate-600 hover:text-brand-600 text-base font-bold transition-colors duration-200">實證數據</a>
@@ -174,7 +174,7 @@
                     </a>
                 </nav>
 
-                <!-- 手機與平板直向端選單按鈕 -->
+                <!-- 手機與平板直向端選單按鈕 (改為 lg:hidden) -->
                 <div class="lg:hidden flex items-center">
                     <button @click="mobileMenu = !mobileMenu" class="text-slate-600 hover:text-slate-900 focus:outline-none" aria-label="Toggle Menu">
                         <i class="fa-solid text-2xl" :class="mobileMenu ? 'fa-xmark' : 'fa-bars'"></i>
@@ -183,7 +183,7 @@
             </div>
         </div>
 
-        <!-- 手機與平板直向端下拉選單 -->
+        <!-- 手機與平板直向端下拉選單 (改為 lg:hidden) -->
         <div x-show="mobileMenu" x-transition x-cloak class="lg:hidden bg-white border-b border-slate-200 px-5 pt-2 pb-6 space-y-4 shadow-inner">
             <a href="#why-us" @click="mobileMenu = false" class="block text-slate-700 hover:text-brand-600 py-2.5 text-base font-bold"><i class="fa-solid fa-shield-heart mr-2 text-brand-500"></i> 為何選擇我們</a>
             <a href="#clinical-proof" @click="mobileMenu = false" class="block text-slate-700 hover:text-brand-600 py-2.5 text-base font-bold"><i class="fa-solid fa-chart-column mr-2 text-brand-500"></i> 實證數據</a>
@@ -199,6 +199,7 @@
         </div>
     </header>
 
+    <!-- 主要內容 -->
     <main class="w-full overflow-x-hidden">
         
         <section class="relative bg-slate-50 border-b border-slate-200/80 overflow-hidden py-16 lg:py-24 w-full">
@@ -274,7 +275,7 @@
                             
                             <div class="space-y-6">
                                 <div class="flex items-start space-x-4">
-                                    <div class="bg-brand-50 text-white w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-bold text-sm mt-0.5 shadow-md shadow-brand-500/20">
+                                    <div class="bg-brand-500 text-white w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-bold text-sm mt-0.5 shadow-md shadow-brand-500/20">
                                         1
                                     </div>
                                     <div>
@@ -689,37 +690,29 @@
 
                             <div class="grid grid-cols-2 gap-4">
                                 <!-- 療效指數 -->
-                                <div class="bg-white p-5 rounded-2xl border border-slate-100 text-center flex flex-col justify-between items-center min-h-[190px]">
-                                    <span class="text-slate-500 text-xs sm:text-sm font-bold block min-h-[2.5rem] flex items-center justify-center text-center w-full leading-tight">療效指數 (Efficacy)</span>
-                                    <div class="relative w-20 h-20 my-2 flex items-center justify-center">
-                                        <svg class="w-full h-full" viewBox="0 0 80 80">
+                                <div class="bg-white p-5 rounded-2xl border border-slate-100 text-center flex flex-col justify-center items-center">
+                                    <span class="text-slate-500 text-xs font-bold block mb-2">療效指數 (Efficacy)</span>
+                                    <div class="relative w-20 h-20 mb-3 flex items-center justify-center">
+                                        <svg class="absolute inset-0 w-full h-full transform -rotate-90">
                                             <circle cx="40" cy="40" r="34" stroke="#f1f5f9" stroke-width="6" fill="transparent" />
-                                            <circle cx="40" cy="40" r="34" stroke="#14b8a6" stroke-width="6" fill="transparent" 
-                                                    stroke-linecap="round"
-                                                    stroke-dasharray="213.6" 
-                                                    stroke-dashoffset="15" 
-                                                    transform="rotate(-90 40 40)" />
+                                            <circle cx="40" cy="40" r="34" stroke="#14b8a6" stroke-width="6" fill="transparent" stroke-dasharray="213" stroke-dashoffset="10" />
                                         </svg>
-                                        <span class="absolute text-lg font-black text-slate-800">1.05</span>
+                                        <span class="text-lg font-black text-slate-800">1.05</span>
                                     </div>
-                                    <span class="text-[11px] text-brand-600 font-bold flex items-center justify-center gap-1 mt-1 w-full"><i class="fa-solid fa-circle-check"></i> 大於標準值 1.0</span>
+                                    <span class="text-[11px] text-brand-600 font-bold"><i class="fa-solid fa-circle-check"></i> 大於標準值 1.0</span>
                                 </div>
 
                                 <!-- 安全指數 -->
-                                <div class="bg-white p-5 rounded-2xl border border-slate-100 text-center flex flex-col justify-between items-center min-h-[190px]">
-                                    <span class="text-slate-500 text-xs sm:text-sm font-bold block min-h-[2.5rem] flex items-center justify-center text-center w-full leading-tight">安全指數 (Safety)</span>
-                                    <div class="relative w-20 h-20 my-2 flex items-center justify-center">
-                                        <svg class="w-full h-full" viewBox="0 0 80 80">
+                                <div class="bg-white p-5 rounded-2xl border border-slate-100 text-center flex flex-col justify-center items-center">
+                                    <span class="text-slate-500 text-xs font-bold block mb-2">安全指數 (Safety)</span>
+                                    <div class="relative w-20 h-20 mb-3 flex items-center justify-center">
+                                        <svg class="absolute inset-0 w-full h-full transform -rotate-90">
                                             <circle cx="40" cy="40" r="34" stroke="#f1f5f9" stroke-width="6" fill="transparent" />
-                                            <circle cx="40" cy="40" r="34" stroke="#14b8a6" stroke-width="6" fill="transparent" 
-                                                    stroke-linecap="round"
-                                                    stroke-dasharray="213.6" 
-                                                    stroke-dashoffset="15" 
-                                                    transform="rotate(-90 40 40)" />
+                                            <circle cx="40" cy="40" r="34" stroke="#14b8a6" stroke-width="6" fill="transparent" stroke-dasharray="213" stroke-dashoffset="10" />
                                         </svg>
-                                        <span class="absolute text-lg font-black text-slate-800">1.05</span>
+                                        <span class="text-lg font-black text-slate-800">1.05</span>
                                     </div>
-                                    <span class="text-[11px] text-brand-600 font-bold flex items-center justify-center gap-1 mt-1 w-full"><i class="fa-solid fa-circle-check"></i> 大於標準值 1.0</span>
+                                    <span class="text-[11px] text-brand-600 font-bold"><i class="fa-solid fa-circle-check"></i> 大於標準值 1.0</span>
                                 </div>
                             </div>
 
@@ -841,7 +834,7 @@
                             </div>
                             <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-3">02. 器械零接觸 (降低心理恐懼感)</h3>
                             <p class="text-slate-655 text-base leading-relaxed font-semibold">
-                                手術全程僅使用高階雷射進行，沒有任何鋼刀切削，也不做任何真空負壓抽吸（避免拉扯眼球造成的視網膜微損）。這排成了器械接觸眼球的巨大心理壓迫感，怕痛、容易緊張的個案也能輕鬆配合。
+                                手術全程僅使用高階雷射進行，沒有任何鋼刀切削，也不做任何真空負壓抽吸（避免拉扯眼球造成的視網膜微損）。這排除了器械接觸眼球的巨大心理壓迫感，怕痛、容易緊張的個案也能輕鬆配合。
                             </p>
                         </div>
                     </div>
@@ -884,7 +877,7 @@
                             </div>
                             <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-3">03. 術後不乾眼 (守護角膜神經)</h3>
                             <p class="text-slate-655 text-base leading-relaxed font-semibold">
-                                因為手術不深入削切角膜基質層深層，對角膜神經的破壞是主流手術中極微小的。臨床文獻證實，這能大保障減少近視雷射手術後最常見的「長期眼睛乾澀」副作用，守護淚液分泌。
+                                因為手術不深入削切角膜基質層深層，對角膜神經的破壞是主流手術中極微小的。臨床文獻證實，這能大幅度減少近視雷射手術後最常見的「長期眼睛乾澀」副作用，守護淚液分泌。
                             </p>
                         </div>
                     </div>
@@ -900,7 +893,7 @@
                     <span class="text-brand-600 font-extrabold text-xs sm:text-sm tracking-wider uppercase">Advanced Technology</span>
                     <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2">引領全球屈光雷射<br>德國頂規 AMARIS 四大智能科技</h2>
                     <p class="text-slate-655 text-base sm:text-lg mt-4 leading-relaxed font-semibold">
-                        本院引引之 AMARIS 1050RS 曾榮獲「國際傑出醫學設計金獎」，用高科技解決眼球不自主微顫、雷射過熱酸痛等傳統手術痛點。
+                        本院引進之 AMARIS 1050RS 曾榮獲「國際傑出醫學設計金獎」，用高科技解決眼球不自主微顫、雷射過熱酸痛等傳統手術痛點。
                     </p>
                 </div>
                 
@@ -1055,7 +1048,7 @@
                                 <span class="text-sm font-extrabold text-slate-800">醫師親自分析角膜地形圖數據</span>
                             </div>
                             <div class="bg-white border border-slate-200/60 p-3 rounded-2xl shadow-sm text-center">
-                                <img src="IMG_20250507_134924.jpg" alt="護理團隊手術行行詳盡說導" class="w-full h-48 object-cover rounded-xl border border-slate-100 mb-3 hover:scale-[1.02] transition-transform duration-200" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600'">
+                                <img src="IMG_20250507_134924.jpg" alt="護理團隊手術行前詳盡說導" class="w-full h-48 object-cover rounded-xl border border-slate-100 mb-3 hover:scale-[1.02] transition-transform duration-200" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600'">
                                 <span class="text-sm font-extrabold text-slate-800">醫療團隊細緻解讀手術行行守則</span>
                             </div>
                         </div>
@@ -1155,10 +1148,10 @@
                     </p>
                 </div>
 
-                <!-- 精密實物照片卡片排版 -->
+                <!-- 精密實物照片卡片排版 (iPad 直向改為單列，iPad 橫向與桌面端維持三列) -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
                     
-                    <!-- 卡片 1: 113SNQaward.jpg -->
+                    <!-- 卡片 1: 113SNQaward.jpg (官方海報) -->
                     <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                         <div>
                             <div class="overflow-hidden rounded-2xl bg-slate-100 aspect-[3/4] flex items-center justify-center cursor-pointer mb-4 relative"
@@ -1176,7 +1169,7 @@
                         <button @click="openLightbox('113SNQaward.jpg', 'SNQ 國家品質標章全台傑出醫護團隊海報')" class="mt-4 w-full bg-slate-100 hover:bg-brand-500 hover:text-white text-slate-700 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-center"><i class="fa-solid fa-expand mr-2"></i>放大海報圖檔</button>
                     </div>
 
-                    <!-- 卡片 2: 113SNQawardword.jpg -->
+                    <!-- 卡片 2: 113SNQawardword.jpg (官方證書紙) -->
                     <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                         <div>
                             <div class="overflow-hidden rounded-2xl bg-slate-100 aspect-[3/4] flex items-center justify-center cursor-pointer mb-4 relative"
@@ -1194,7 +1187,7 @@
                         <button @click="openLightbox('113SNQawardword.jpg', 'SNQ 國家品質標章官方認證證書')" class="mt-4 w-full bg-slate-100 hover:bg-brand-500 hover:text-white text-slate-700 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-center"><i class="fa-solid fa-expand mr-2"></i>放大證書圖檔</button>
                     </div>
 
-                    <!-- 卡片 3: 113年SNQDrWeng.jpg -->
+                    <!-- 卡片 3: 113年SNQDrWeng.jpg (翁醫師現場英姿) -->
                     <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                         <div>
                             <div class="overflow-hidden rounded-2xl bg-slate-100 aspect-[3/4] flex items-center justify-center cursor-pointer mb-4 relative"
@@ -1977,7 +1970,7 @@
                         <h4 class="font-extrabold text-slate-900 text-base border-l-4 border-brand-500 pl-2.5">二、 個人資料的蒐集、處理及利用方式</h4>
                         <ul class="list-disc list-inside space-y-1.5 pl-1.5 text-slate-600 font-medium">
                             <li>當您蒞臨本網站 or 參與本網站活動時，我們將視活動性質請您提供必要的個人資料，並在該特定目的範圍內處理及利用您的個人資料。</li>
-                            <li>本網站蒐集足以識別使用者身分的個人資料、消費與交易資料，或日後經您同意而提供之其他個人資料，都僅供本網站於其內部、依照蒐集之目的進行處理 and 利用、或為完成提供服務 or 履行合約義務之必要、或依照相關法令規定或有權政府機關之命令 or 要求，否則本網站不會將足以識別使用者身分的個人資料提供給第三人（包括境內及境外）、或移作蒐集目的以外之使用。</li>
+                            <li>本網站蒐集足以識別使用者身分的個人資料、消費與交易資料，或日後經您同意而提供之其他個人資料，都僅供本網站於其內部、依照蒐集之目的進行處理和利用、或為完成提供服務 or 履行合約義務之必要、或依照相關法令規定或有權政府機關之命令 or 要求，否則本網站不會將足以識別使用者身分的個人資料提供給第三人（包括境內及境外）、或移作蒐集目的以外之使用。</li>
                         </ul>
                     </div>
 
